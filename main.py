@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 from extractor import extract_claims
 from searcher import search_claim
-from verifier import verify_claim
+from verify import verify_claim
 
 def run_stale_answer_detector(ai_answer):
     print("=" * 60)
