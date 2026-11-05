@@ -3,7 +3,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
-# Always read the .env file in the main project folder, wherever we run from
 load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=True)
 
 client = OpenAI(
@@ -18,6 +17,10 @@ def ask(model, system, user):
             f"Model name is '{model}'. Check CHEAP_MODEL and STRONG_MODEL in .env "
             "(format: provider/model, e.g. openrouter/openai/gpt-4o-mini)"
         )
+    extra = {}
+    fallback = os.getenv("FALLBACK_MODEL")
+    if fallback:
+        extra["fallbacks"] = [fallback]  # Bifrost tries this if the main model fails
     resp = client.chat.completions.create(
         model=model,
         messages=[
@@ -26,7 +29,9 @@ def ask(model, system, user):
         ],
         temperature=0,
         max_tokens=800,
+        extra_body=extra,
     )
+    print(f"[model used: {resp.model}]")
     return resp.choices[0].message.content
 
 def ask_json(model, system, user):
