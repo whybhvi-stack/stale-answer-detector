@@ -13,6 +13,8 @@ answer = st.text_area("AI-generated answer", height=200)
 if st.button("Check freshness") and answer.strip():
     with st.spinner("Checking claims against live sources..."):
         report = check_answer(answer)
+        if not report:
+         st.success("No time-sensitive claims found, so nothing in this answer can go stale.")
     for r in report:
         icon = {"green": "🟢", "orange": "🟡", "red": "🔴"}[r["color"]]
         st.markdown(f"### {icon} {r['claim']}")

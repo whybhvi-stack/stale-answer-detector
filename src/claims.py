@@ -6,8 +6,8 @@ Time-sensitive means: prices, version numbers, API features, laws, rules, compan
 statistics, 'latest' or 'current' statements.
 Return ONLY JSON in this form:
 {"claims": [{"claim": "exact short claim", "type": "pricing|version|law|leadership|stat|other", "search_query": "short web search query"}]}
-Ignore timeless facts. Return at most 8 claims."""
-
+Words like 'latest', 'newest', 'most advanced', 'best', 'current' or 'still' also make a claim
+time-sensitive. Extract each such claim separately. Ignore timeless facts. Return at most 8 claims."""
 def extract_claims(answer):
     data = ask_json(os.getenv("CHEAP_MODEL"), SYSTEM, answer)
     return data["claims"]

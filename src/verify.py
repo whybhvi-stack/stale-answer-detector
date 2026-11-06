@@ -58,4 +58,7 @@ def verify_claim(claim_obj):
         if len(domains) < 2:
             verdict["correct_info"] = ""
             verdict["reason"] += " (The current answer could not be confirmed by two independent sources.)"
+        if verdict.get("verdict") == "outdated" and not verdict.get("correct_info"):
+         verdict["reason"] = ("Sources suggest this claim is out of date, but the current answer "
+                             "could not be confirmed by two independent sources.")  
     return verdict, results
