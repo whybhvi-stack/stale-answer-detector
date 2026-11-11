@@ -69,7 +69,11 @@ The score is limited to 0-100. Green is 70 or more, yellow is 40 to 69, red is b
 
 ![GPT-4 answer](screenshots/after-gpt4.png)
 
+**After our fixes: iPhone answer** (flagged as outdated, no wrong replacement shown)
+
 ![iPhone answer](screenshots/after-iphone.png)
+
+**After our fixes: nothing to check** (no time-sensitive claims, so no false alarm)
 
 ![No time-sensitive claims](screenshots/after-no-claims.png)
 
